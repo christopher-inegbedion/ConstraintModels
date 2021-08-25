@@ -16,10 +16,9 @@ class ProductDescriptionModel(Model):
         self.input_mode = ConstraintInputMode.PRE_DEF
         self.input_count = 0
         self.output_type = InputType.ANY
-        self.config_parameters = ["Product name", "Product description"]
 
         super().__init__(self.name, self.model_family, self.input_type,
-                         self.input_mode, self.input_count, self.output_type, config_parameters=self.config_parameters)
+                         self.input_mode, self.input_count, self.output_type)
 
     def run(self, inputs, configuration_inputs={}):
         super().run(inputs)
@@ -29,9 +28,9 @@ class ProductDescriptionModel(Model):
         for property in properties:
             self.config_parameters.append(property)
 
-        self.add_configuration_input("Bread")
-        self.add_configuration_input("New bread")
         task: Task = self.constraint.task_instance
+        self.add_configuration_input(task.name, "Product name")
+        self.add_configuration_input(task.description, "Product description")
 
         for property in properties:
             if properties[property]["denomination"] == None:
