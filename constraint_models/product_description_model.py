@@ -4,10 +4,12 @@ from constraints.enums.input_type import InputType
 from constraints.models.model_parent import Model
 import requests
 import jsonpickle
+from task_main.task import Task
 
 
 class ProductDescriptionModel(Model):
     def __init__(self):
+
         self.name = "ProductDesctiptionModel"
         self.model_family = ModelFamily.CONSTRAINT
         self.input_type = InputType.STRING
@@ -17,12 +19,29 @@ class ProductDescriptionModel(Model):
         self.config_parameters = ["Product name", "Product description"]
 
         super().__init__(self.name, self.model_family, self.input_type,
-                         self.input_mode, self.input_count, self.output_type, configuration_input_required=True, configuration_input_count=2, config_parameters=self.config_parameters)
+                         self.input_mode, self.input_count, self.output_type, config_parameters=self.config_parameters)
 
     def run(self, inputs, configuration_inputs={}):
         super().run(inputs)
+        task: Task = self.constraint.task_instance
+        properties = task.get_selected_properties()
 
-        print("done done")
+        for property in properties:
+            self.config_parameters.append(property)
+
+        self.add_configuration_input("Bread")
+        self.add_configuration_input("New bread")
+        task: Task = self.constraint.task_instance
+
+        for property in properties:
+            if properties[property]["denomination"] == None:
+                val = properties[property]["value"]
+            else:
+                val = str(properties[property]["value"]) + \
+                    properties[property]["denomination"]
+
+            self.add_configuration_input(val, property)
+
         self._complete(True)
 
     def _complete(self, data, aborted=False):
