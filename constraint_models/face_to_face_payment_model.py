@@ -18,11 +18,11 @@ class FaceToFacePayment(Model):
                          self.input_mode, self.input_count, self.output_type,
                          admin_session_independent=False, for_payment=True)
 
-    def run(self, inputs, configuration_inputs={}):
-        super().run(inputs)
+    def listen(self, msg, data):
         task: Task = self.constraint.task_instance
-        task.toggle_paid_val(True)
-        self._complete(True)
+        if msg == "paid":
+            task.toggle_paid_val(True)
+            self._complete(True)
 
     def _complete(self, data, aborted=False):
         super()._complete(data, aborted)
