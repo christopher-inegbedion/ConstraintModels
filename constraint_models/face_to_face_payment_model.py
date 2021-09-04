@@ -1,3 +1,4 @@
+from constraints.constraint_main.constraint import Constraint
 from constraints.enums.constraint_input_mode import ConstraintInputMode
 from constraints.enums.model_family import ModelFamily
 from constraints.models.model_parent import Model
@@ -22,7 +23,13 @@ class FaceToFacePayment(Model):
         task: Task = self.constraint.task_instance
         if msg == "paid":
             task.toggle_paid_val(True)
+            self.add_configuration_input(True, "paid")
+            self.add_configuration_input(task.price, "amount")
+            self.add_configuration_input(task.currency, "currency")
             self._complete(True)
 
     def _complete(self, data, aborted=False):
         super()._complete(data, aborted)
+        constraint: Constraint = self.constraint
+        constraint.completion_data = constraint.configuration_inputs
+        
