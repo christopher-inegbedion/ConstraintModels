@@ -23,7 +23,8 @@ class CreateConstraintUtil():
         "Time range": CustomConstraint("Time range", "Set a time for where your task can be accessed.", TimeRangeModel()),
         "Chat": CustomConstraint("Chat", "Chat with your customers", ChatModel()),
         "Delivery": CustomConstraint("Delivery", "View the current delivery status", DeliveryModel()),
-        "Face-To-Face payment": CustomConstraint("Face-To-Face payment", "Collect payments from your customers in person", FaceToFacePayment())
+        "Face-To-Face payment": CustomConstraint("Face-To-Face payment", "Collect payments from your customers in person",
+                                                 FaceToFacePayment(), completion_data_labels=["Paid", "Amount", "Currency"])
     }
 
     def __init__(self) -> None:
