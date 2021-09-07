@@ -1,3 +1,4 @@
+from constraint_models.rating_model import RatingModel
 from constraints.models.model_parent import Model
 from constraint_models.internet_model import InternetModel
 from constraints.models.example_models.pause_thread import PauseModel
@@ -24,7 +25,9 @@ class CreateConstraintUtil():
         "Chat": CustomConstraint("Chat", "Chat with your customers", ChatModel()),
         "Delivery": CustomConstraint("Delivery", "View the current delivery status", DeliveryModel()),
         "Face-To-Face payment": CustomConstraint("Face-To-Face payment", "Collect payments from your customers in person",
-                                                 FaceToFacePayment(), completion_data_labels=["Paid", "Amount", "Currency"])
+                                                 FaceToFacePayment(), completion_data_labels=["Paid", "Amount", "Currency"]),
+        "Rating and Review": CustomConstraint("Rating and Review", "Rate the service", RatingModel(), 
+                                              completion_data_labels=["Review message", "Review score"])
     }
 
     def __init__(self) -> None:
@@ -52,6 +55,8 @@ class CreateConstraintUtil():
             return DeliveryModel()
         elif name == "Face-To-Face payment":
             return FaceToFacePayment()
+        elif name == "Rating and Review":
+            return RatingModel()
 
     @classmethod
     def create_constraint(cls, name) -> CustomConstraint:
