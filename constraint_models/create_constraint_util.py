@@ -15,18 +15,18 @@ from constraints.constraint_main.custom_constraint import CustomConstraint
 
 class CreateConstraintUtil():
     all_constraints = {
-        "Exchange rate": CustomConstraint("Exchange rate", "View the current exchange rate between 2 currencies", InternetModel()),
-        "Pause": CustomConstraint("Pause", "A constraint to pause", PauseModel()),
-        "Product description": CustomConstraint("Product description", "View the product's basic information", ProductDescriptionModel()),
-        "Order confirmation": CustomConstraint("Order confirmation", "This constraint confirms the order", OrderProductModel()),
-        "Product link": CustomConstraint("Product link", "Provide a link to a URL for your customer", ProductLinkModel()),
-        "Password": CustomConstraint("Password", "Requires a secret word/phrase before access can be granted", PasswordModel()),
-        "Time range": CustomConstraint("Time range", "Set a time for where your task can be accessed.", TimeRangeModel()),
-        "Chat": CustomConstraint("Chat", "Chat with your customers", ChatModel()),
-        "Delivery": CustomConstraint("Delivery", "View the current delivery status", DeliveryModel()),
+        "Exchange rate": CustomConstraint("Exchange rate", "View the current exchange rate between 2 currencies", InternetModel(), False),
+        "Pause": CustomConstraint("Pause", "A constraint to pause", PauseModel(), False),
+        "Product description": CustomConstraint("Product description", "View the product's basic information", ProductDescriptionModel(), False),
+        "Order confirmation": CustomConstraint("Order confirmation", "This constraint confirms the order", OrderProductModel(), False),
+        "Product link": CustomConstraint("Product link", "Provide a link to a URL for your customer", ProductLinkModel(), False),
+        "Password": CustomConstraint("Password", "Requires a secret word/phrase before access can be granted", PasswordModel(), False),
+        "Time range": CustomConstraint("Time range", "Set a time for where your task can be accessed.", TimeRangeModel(), False),
+        "Chat": CustomConstraint("Chat", "Chat with your customers", ChatModel(), False),
+        "Delivery": CustomConstraint("Delivery", "View the current delivery status", DeliveryModel(), True),
         "Face-To-Face payment": CustomConstraint("Face-To-Face payment", "Collect payments from your customers in person",
-                                                 FaceToFacePayment(), completion_data_labels=["Paid", "Amount", "Currency"]),
-        "Rating and Review": CustomConstraint("Rating and Review", "Rate the service", RatingModel(), 
+                                                 FaceToFacePayment(), True, completion_data_labels=["Paid", "Amount", "Currency"]),
+        "Rating and Review": CustomConstraint("Rating and Review", "Rate the service", RatingModel(), False,
                                               completion_data_labels=["Review message", "Review score"])
     }
 
