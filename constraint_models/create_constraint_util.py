@@ -61,4 +61,6 @@ class CreateConstraintUtil():
     @classmethod
     def create_constraint(cls, name) -> CustomConstraint:
         if name in cls.all_constraints:
-            return CustomConstraint(name, cls.all_constraints[name].description, cls._create_model(name))
+            return CustomConstraint(name, cls.all_constraints[name].description, cls._create_model(name),
+                                    cls.all_constraints[name].is_admin_input_required,
+                                    completion_data_labels=cls.all_constraints[name].completion_data_labels)
