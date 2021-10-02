@@ -21,11 +21,8 @@ class DeliveryModel(Model):
     def listen(self, msg, data):
         self._set_configuration_input_value(
             "msg", data)
-        if msg == "start":
-            self._set_configuration_input_value("stage", "start")
-            self._notify_config_input_change()
-        elif msg == "prep":
-            self._set_configuration_input_value("stage", "prep")
+        if msg == "preparing":
+            self._set_configuration_input_value("stage", "preparing")
             self._notify_config_input_change()
         elif msg == "en_route":
             self._set_configuration_input_value("stage", "en_route")
