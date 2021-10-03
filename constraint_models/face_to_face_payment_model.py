@@ -4,6 +4,7 @@ from constraints.enums.model_family import ModelFamily
 from constraints.models.model_parent import Model
 from constraints.enums.input_type import InputType
 from task_main.task import Task
+from datetime import datetime
 
 
 class FaceToFacePayment(Model):
@@ -18,14 +19,18 @@ class FaceToFacePayment(Model):
         super().__init__(self.name, self.model_family, self.input_type,
                          self.input_mode, self.input_count, self.output_type,
                          admin_session_independent=False, for_payment=True)
+        
 
     def listen(self, msg, data):
         task: Task = self.constraint.task_instance
+        now = datetime.now() 
+        
         if msg == "paid":
             task.toggle_paid_val(True)
             self.add_configuration_input(True, "paid")
             self.add_configuration_input(task.price, "amount")
             self.add_configuration_input(task.currency, "currency")
+            self.add_configuration_input(now.strftime("%m/%d/%Y, %H:%M:%S"), "time_paid")
             self._complete(True)
 
     def _complete(self, data, aborted=False):

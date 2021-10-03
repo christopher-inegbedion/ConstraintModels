@@ -25,7 +25,7 @@ class CreateConstraintUtil():
         "Chat": CustomConstraint("Chat", "Chat with your customers", ChatModel(), False),
         "Delivery": CustomConstraint("Delivery", "View the current delivery status", DeliveryModel(), True),
         "Face-To-Face payment": CustomConstraint("Face-To-Face payment", "Collect payments from your customers in person",
-                                                 FaceToFacePayment(), True, completion_data_labels=["Paid", "Amount", "Currency"]),
+                                                 FaceToFacePayment(), True, completion_data_labels=["Paid", "Amount", "Currency", "Time paid"]),
         "Rating and Review": CustomConstraint("Rating and Review", "Rate the service", RatingModel(), False,
                                               completion_data_labels=["Review message", "Review score"])
     }
