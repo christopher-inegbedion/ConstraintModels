@@ -17,17 +17,16 @@ class CreateConstraintUtil():
     all_constraints = {
         "Exchange rate": CustomConstraint("Exchange rate", "View the current exchange rate between 2 currencies", InternetModel(), False),
         "Pause": CustomConstraint("Pause", "A constraint to pause", PauseModel(), False),
-        "Product description": CustomConstraint("Product description", "View the product's basic information", ProductDescriptionModel(), False),
-        "Order confirmation": CustomConstraint("Order confirmation", "This constraint confirms the order", OrderProductModel(), False),
+        "Product description": CustomConstraint("Product description", "View the product's basic information", ProductDescriptionModel(), False, constraint_thumbnail_descriptior="https://media.giphy.com/media/otR2O9KOBHOytUBkSn/giphy.gif"),
         "Product link": CustomConstraint("Product link", "Provide a link to a URL for your customer", ProductLinkModel(), False),
-        "Password": CustomConstraint("Password", "Requires a secret word/phrase before access can be granted", PasswordModel(), False),
+        "Password": CustomConstraint("Password", "Requires a secret word/phrase before access can be granted", PasswordModel(), False, completion_data_labels=["Actual password", "Number of attempts"]),
         "Time range": CustomConstraint("Time range", "Set a time for where your task can be accessed.", TimeRangeModel(), False),
         "Chat": CustomConstraint("Chat", "Chat with your customers", ChatModel(), False),
         "Delivery": CustomConstraint("Delivery", "View the current delivery status", DeliveryModel(), True),
         "Face-To-Face payment": CustomConstraint("Face-To-Face payment", "Collect payments from your customers in person",
-                                                 FaceToFacePayment(), True, completion_data_labels=["Paid", "Amount", "Currency", "Time paid"]),
+                                                 FaceToFacePayment(), True, completion_data_labels=["Paid", "Amount", "Currency", "Time paid"], constraint_thumbnail_descriptior="https://media.giphy.com/media/fAEj9oqG6iwApdz0jg/giphy.gif"),
         "Rating and Review": CustomConstraint("Rating and Review", "Rate the service", RatingModel(), False,
-                                              completion_data_labels=["Review message", "Review score"])
+                                              completion_data_labels=["Review message", "Review score"], constraint_thumbnail_descriptior="https://media.giphy.com/media/Yr5I3GTYw7qkgJv4OC/giphy.gif")
     }
 
     def __init__(self) -> None:
