@@ -15,11 +15,11 @@ class PasswordModel(Model):
         self.input_mode = ConstraintInputMode.PRE_DEF
         self.input_count = 0
         self.output_type = InputType.BOOL
-        # self.config_parameters = [
-        #     "passcode"]
+        self.config_parameters = [
+            "passcode"]
 
         super().__init__(self.name, self.model_family, self.input_type,
-                         self.input_mode, self.input_count, self.output_type,)
+                         self.input_mode, self.input_count, self.output_type, configuration_input_required=True, configuration_input_count=1, config_parameters=self.config_parameters)
         
         self.attempts = 0
 
@@ -28,8 +28,8 @@ class PasswordModel(Model):
         
         constraint: Constraint = self.constraint
         if data == constraint.configuration_inputs["passcode"]:
-            self.add_configuration_input("result", "pass")
-            self.add_configuration_input(self.attemps, "attempts")
+            self._set_configuration_input_value("result", "pass")
+            # self.add_configuration_input(self.attemps, "attempts")
             self._notify_config_input_change()
             self._complete(True)
         else:
