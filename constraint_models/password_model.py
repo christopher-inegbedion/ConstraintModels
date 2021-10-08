@@ -15,8 +15,8 @@ class PasswordModel(Model):
         self.input_mode = ConstraintInputMode.PRE_DEF
         self.input_count = 0
         self.output_type = InputType.BOOL
-        self.config_parameters = [
-            "passcode"]
+        # self.config_parameters = [
+        #     "passcode"]
 
         super().__init__(self.name, self.model_family, self.input_type,
                          self.input_mode, self.input_count, self.output_type,)
