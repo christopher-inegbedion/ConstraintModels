@@ -28,7 +28,7 @@ class PasswordModel(Model):
         
         constraint: Constraint = self.constraint
         if data == constraint.configuration_inputs["passcode"]:
-            self._set_configuration_input_value("result", "pass")
+            self.add_configuration_input("result", "pass")
             self.add_configuration_input(self.attemps, "attempts")
             self._notify_config_input_change()
             self._complete(True)
