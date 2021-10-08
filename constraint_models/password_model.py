@@ -19,7 +19,7 @@ class PasswordModel(Model):
             "passcode"]
 
         super().__init__(self.name, self.model_family, self.input_type,
-                         self.input_mode, self.input_count, self.output_type, configuration_input_count=1, config_parameters=self.config_parameters)
+                         self.input_mode, self.input_count, self.output_type,)
         
         self.attempts = 0
 
