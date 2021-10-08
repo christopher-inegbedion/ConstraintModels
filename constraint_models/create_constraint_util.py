@@ -3,7 +3,6 @@ from constraints.models.model_parent import Model
 from constraint_models.internet_model import InternetModel
 from constraints.models.example_models.pause_thread import PauseModel
 from constraint_models.product_description_model import ProductDescriptionModel
-from constraint_models.order_product_model import OrderProductModel
 from constraint_models.product_link_model import ProductLinkModel
 from constraint_models.password_model import PasswordModel
 from constraint_models.time_range_model import TimeRangeModel
