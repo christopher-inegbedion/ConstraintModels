@@ -19,13 +19,13 @@ class PasswordModel(Model):
             "passcode"]
 
         super().__init__(self.name, self.model_family, self.input_type,
-                         self.input_mode, self.input_count, self.output_type, configuration_input_required=True, config_parameters=self.config_parameters)
-
+                         self.input_mode, self.input_count, self.output_type, configuration_input_count=1, config_parameters=self.config_parameters)
+        
         self.attempts = 0
 
     def listen(self, msg, data):
         super().listen(msg, data)
-
+        
         constraint: Constraint = self.constraint
         if data == constraint.configuration_inputs["passcode"]:
             self._set_configuration_input_value("result", "pass")
@@ -35,7 +35,7 @@ class PasswordModel(Model):
         else:
             self._set_configuration_input_value("result", "fail")
             self._notify_config_input_change()
-            self.attempts = + 1
+            self.attempts =+ 1
 
     def _complete(self, data, aborted=False):
         super()._complete(data, aborted)
