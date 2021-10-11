@@ -31,6 +31,8 @@ class ProductDescriptionModel(Model):
         task: Task = self.constraint.task_instance
         self.add_configuration_input(task.name, "Product name")
         self.add_configuration_input(task.description, "Product description")
+        self.add_configuration_input(task.price, "Price")
+        self.add_configuration_input(task.currency, "Currency")
 
         for property in properties:
             if properties[property]["denomination"] == None:
