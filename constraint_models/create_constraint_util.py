@@ -39,8 +39,6 @@ class CreateConstraintUtil():
             return PauseModel()
         elif name == "Product description":
             return ProductDescriptionModel()
-        elif name == "Order confirmation":
-            return OrderProductModel()
         elif name == "Product link":
             return ProductLinkModel()
         elif name == "Password":
@@ -61,4 +59,5 @@ class CreateConstraintUtil():
         if name in cls.all_constraints:
             return CustomConstraint(name, cls.all_constraints[name].description, cls._create_model(name),
                                     cls.all_constraints[name].is_admin_input_required,
-                                    completion_data_labels=cls.all_constraints[name].completion_data_labels)
+                                    completion_data_labels=cls.all_constraints[name].completion_data_labels,
+                                    constraint_thumbnail_descriptior=cls.all_constraints[name].constraint_thumbnail_descriptior)
